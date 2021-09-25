@@ -4,11 +4,35 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <style type="text/css">
+        .jumbotron {
+          padding: 4rem 2rem;
+          margin-bottom: 2rem;
+          border-radius: .3rem;  
+        }
+        .good{
+          background-color: rgb(0, 228, 0);
+        }
+        .moderate{
+          background-color: yellow;
+        }
+        .usg{
+          background-color: rgb(255, 126, 0);
+        }
+        .unhealthy{
+          background-color: red;
+        }
+        .very_unhealthy{
+          background-color: rgb(143, 63, 151);
+        }
+        .hazardous{
+          background-color: rgb(126, 0, 35);
+        }
+    </style>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-    <title>{% block title %}{% endblock title %}</title>
+    <title>Weather App - {% block title %}{% endblock title %}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,9 +47,10 @@
             <a class="nav-link" href="{% url 'about' %}">About us</a>
             </li>
         </ul>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <form class="d-flex" action="{% url 'home' %}" method="POST">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Enter ZipCode" aria-label="Search" name="zipcode">
+            <button class="btn btn-outline-secondary" type="submit">Lookup</button>
         </form>
         </div>
     </div>

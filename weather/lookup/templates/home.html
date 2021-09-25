@@ -5,5 +5,16 @@
 {% endblock title %}
 
 {% block content %}
-<h1>Hello World</h1>
+
+{% if api %}
+    {% if api == 'Error ...' %}
+        <p>There was an error, please try again ...</p>
+    {% else %}
+    <div class="jumbotron {{ category_color }}">
+        <h1 class="display-4">{{ api.0.Category.Name }}</h1>
+        <p class="lead">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</p>
+        {{ category_description }}
+    </div>
+    {% endif %}
+{% endif %}
 {% endblock content %}
